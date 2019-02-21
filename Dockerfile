@@ -1,11 +1,13 @@
 # VERSION 1.10.2
+# AUTHOR: Gautham Venugopalan
+# Forked from puckel/docker-airflow version 1.10.2
 # AUTHOR: Matthieu "Puckel_" Roisil
-# DESCRIPTION: Basic Airflow container
-# BUILD: docker build --rm -t puckel/docker-airflow .
-# SOURCE: https://github.com/puckel/docker-airflow
+# DESCRIPTION: Airflow container with Sas7bdat library built in and set up to use LocalExecutor with a postgres database
+# BUILD: docker build --rm -t gautham1/airflow-sas .
+# SOURCE: https://github.com/gvenugopalan/docker-airflow
 
 FROM python:3.6-slim
-LABEL maintainer="Puckel_"
+LABEL maintainer="gautham1"
 
 # Never prompts the user for choices on installation/configuration of packages
 ENV DEBIAN_FRONTEND noninteractive
@@ -15,7 +17,7 @@ ENV TERM linux
 ARG AIRFLOW_VERSION=1.10.2
 ARG AIRFLOW_HOME=/usr/local/airflow
 ARG AIRFLOW_DEPS=""
-ARG PYTHON_DEPS=""
+ARG PYTHON_DEPS="sas7bdat"
 ENV AIRFLOW_GPL_UNIDECODE yes
 
 # Define en_US.
